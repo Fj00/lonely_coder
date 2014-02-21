@@ -111,7 +111,7 @@ class OKCupid
       {
         :pagination => {
           :page => 1,
-          :per_page => 10
+          :per_page => 18
         },
         :min_age => 18,
         :max_age => 99,
@@ -133,12 +133,12 @@ class OKCupid
       
       # Stores the OKCupid server timestamp. Without this, pagination returns
       # inconsistent results.
-      @timekey = page.search('script')[0].text.match(/CurrentGMT = new Date\(([\d]+)\*[\d]+\)/).captures[0]
+      @timekey = page.search('script')[1].text.match(/CurrentGMT = new Date\(([\d]+)\*[\d]+\)/).captures[0]
       
       # OKCupid may return previously found profiles if there aren't enough
       # to fill a query or pagination, so we stop that with a set.
       @results = Set.new
-      @results += page.search('.match_row').collect do |node|
+      @results += page.search('.match_card_wrapper').collect do |node|
         OKCupid::Profile.from_search_result(node)
       end
             
@@ -179,7 +179,7 @@ class OKCupid
       
       page = @browser.get(ajax_url)
       
-      @results += page.search('.match_row').collect do |node|
+      @results += page.search('.match_card_wrapper').collect do |node|
         OKCupid::Profile.from_search_result(node)
       end
       

@@ -23,27 +23,40 @@ class OKCupid
     
     # Scraping is never pretty.
     def self.from_search_result(html)
+      username         = html.search('.username').text
+      age              = html.search('span.age').text.to_i
+      match            = html.search('.percentages').text.gsub( /[^\d]/, '' ).to_i
+      location         = html.search('span.location').text
+      small_avatar_url = html.search('a.image_wrapper').attribute('data-image-url')
       
-      username = html.search('span.username').text
-      age, sex, orientation, single = html.search('p.aso').text.split('/')
+      # username = html.search('span.username').text
+      # age, sex, orientation, single = html.search('p.aso').text.split('/')
       
-      percents = html.search('div.percentages')
-      match = percents.search('p.match .percentage').text.to_i
-      friend = percents.search('p.friend .percentage').text.to_i
-      enemy = percents.search('p.enemy .percentage').text.to_i
+      # percents = html.search('div.percentages')
+      # match = percents.search('p.match .percentage').text.to_i
+      # friend = percents.search('p.friend .percentage').text.to_i
+      # enemy = percents.search('p.enemy .percentage').text.to_i
       
-      location = html.search('p.location').text
-      small_avatar_url = html.search('a.user_image img').attribute('src').value
+      # location = html.search('p.location').text
+      # small_avatar_url = html.search('a.user_image img').attribute('src').value
+      
+      # OKCupid::Profile.new({
+      #   username: username,
+      #   age: OKCupid.strip(age),
+      #   sex: OKCupid.strip(sex),
+      #   orientation: OKCupid.strip(orientation),
+      #   single: OKCupid.strip(single),
+      #   match: match,
+      #   friend: friend,
+      #   enemy: enemy,
+      #   location: location,
+      #   small_avatar_url: small_avatar_url
+      # })
       
       OKCupid::Profile.new({
-        username: username,
-        age: OKCupid.strip(age),
-        sex: OKCupid.strip(sex),
-        orientation: OKCupid.strip(orientation),
-        single: OKCupid.strip(single),
+        username: OKCupid.strip(username),
+        age: age,
         match: match,
-        friend: friend,
-        enemy: enemy,
         location: location,
         small_avatar_url: small_avatar_url
       })
@@ -53,16 +66,16 @@ class OKCupid
       html = browser.get("http://www.okcupid.com/profile/#{username}")
       
       percents = html.search('#percentages')
-      match = percents.search('span.match').text.to_i
-      friend = percents.search('span.friend').text.to_i
-      enemy = percents.search('span.enemy').text.to_i
+      match    = percents.search('span.match').text.to_i
+      friend   = percents.search('span.friend').text.to_i
+      enemy    = percents.search('span.enemy').text.to_i
       
-      basic = html.search('#aso_loc')
-      age = basic.search('#ajax_age').text
-      sex = basic.search('#ajax_gender').text
+      basic       = html.search('#aso_loc')
+      age         = basic.search('#ajax_age').text
+      sex         = basic.search('#ajax_gender').text
       orientation = basic.search('#ajax_orientation').text
-      single = basic.search('#ajax_status').text
-      location = basic.search('#ajax_location').text
+      single      = basic.search('#ajax_status').text
+      location    = basic.search('#ajax_location').text
       
       profile_thumb_urls = html.search('#profile_thumbs img').collect {|img| img.attribute('src').value}
       
