@@ -10,9 +10,8 @@ class OKCupid
                   :age, :sex, :orientation, :single, :small_avatar_url
     
     # extended profile details
-    attr_accessor :last_online, :ethnicity, :height, :body_type, :diet, :smokes, 
-                  :drinks, :drugs, :religion, :sign, :education, :job, :income, 
-                  :offspring, :pets, :speaks, :profile_thumb_urls
+    attr_accessor :last_online, :ethnicity, :height, :body_type, :diet, :smokes, :drinks, :drugs, :religion, :sign, :education,
+                  :job, :income, :relationship_status, :relationship_type, :offspring, :pets, :speaks, :profile_thumb_urls
     
     # profile text fields
     attr_accessor :self_summary, :life, :good_at, :first_things, :favorites,
