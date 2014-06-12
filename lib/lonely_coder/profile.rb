@@ -7,7 +7,7 @@ class OKCupid
   
   class Profile
     attr_accessor :username, :match, :friend, :enemy, :location,
-                  :age, :sex, :orientation, :single, :small_avatar_url
+                  :age, :sex, :orientation, :status, :small_avatar_url
     
     # extended profile details
     attr_accessor :last_online, :ethnicity, :height, :body_type, :diet, :smokes, :drinks, :drugs, :religion, :sign, :education,
@@ -73,7 +73,7 @@ class OKCupid
       age         = basic.search('#ajax_age').text
       sex         = basic.search('#ajax_gender').text
       orientation = basic.search('#ajax_orientation').text
-      single      = basic.search('#ajax_status').text
+      status      = basic.search('#ajax_status').text
       location    = basic.search('#ajax_location').text
       
       profile_thumb_urls = html.search('#profile_thumbs img').collect {|img| img.attribute('src').value}
@@ -106,7 +106,7 @@ class OKCupid
         sex: sex,
         orientation: orientation,
         location: location,
-        single: single,
+        status: status,
         profile_thumb_urls: profile_thumb_urls,
         self_summary: self_summary,
         life: life,
