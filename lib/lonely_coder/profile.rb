@@ -7,7 +7,7 @@ class OKCupid
   
   class Profile
     attr_accessor :username, :match, :friend, :enemy, :location,
-                  :age, :sex, :orientation, :status, :small_avatar_url
+                  :age, :sex, :orientation, :status # , :small_avatar_url
     
     # extended profile details
     attr_accessor :last_online, :ethnicity, :height, :body_type, :diet, :smokes, :drinks, :drugs, :religion, :sign, :education,
@@ -26,7 +26,7 @@ class OKCupid
       age              = html.search('span.age').text.to_i
       match            = html.search('.percentages').text.gsub( /[^\d]/, '' ).to_i
       location         = html.search('span.location').text
-      small_avatar_url = html.search('a.image_wrapper').attribute('data-image-url')
+      # small_avatar_url = html.search('a.image_wrapper').attribute('data-image-url')
       
       # username = html.search('span.username').text
       # age, sex, orientation, single = html.search('p.aso').text.split('/')
@@ -57,7 +57,7 @@ class OKCupid
         age: age,
         match: match,
         location: location,
-        small_avatar_url: small_avatar_url
+        # small_avatar_url: small_avatar_url
       })
     end
     
