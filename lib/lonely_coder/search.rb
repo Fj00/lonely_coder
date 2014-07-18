@@ -7,6 +7,7 @@ require 'lonely_coder/search/options/filter'
 
 # these are the included filters. See Filter class documentation for adding your own.
 require 'lonely_coder/search/options/age'
+require 'lonely_coder/search/options/diet'
 require 'lonely_coder/search/options/ethnicity'
 require 'lonely_coder/search/options/order_by'
 require 'lonely_coder/search/options/location'
