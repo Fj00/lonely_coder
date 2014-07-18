@@ -7,7 +7,7 @@ class OKCupid
   end
   
   class Search
-    def add_ethnicity_option(values)
+    def add_diet_option(values)
       @filters << DietFilter.new('diet', values)
     end
   end
