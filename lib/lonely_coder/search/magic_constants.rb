@@ -31,9 +31,9 @@ class OKCupid
     }
 
     Diet = {
-      "vegetarian" => 4
-      "vegan" => 8
-      "kosher" => 16
+      "vegetarian" => 4,
+      "vegan" => 8,
+      "kosher" => 16,
       "halal" => 32
     }
     
