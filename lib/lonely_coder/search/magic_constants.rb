@@ -29,6 +29,13 @@ class OKCupid
       "bi guys only" => 16,
       "everybody" => 63
     }
+
+    Diet = {
+      "vegetarian" => 4
+      "vegan" => 8
+      "kosher" => 16
+      "halal" => 32
+    }
     
     Filters = {
       # "account_status" => 29,
@@ -37,7 +44,7 @@ class OKCupid
       # "cats" => 17,
       # "children" => 18,
       # "community_award" => 31,
-      # "diet" => 54,
+      "diet" => 54,
       # "dogs" => 16,
       # "drinking" => 12,
       # "drugs" => 13,
